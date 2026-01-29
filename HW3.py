@@ -32,8 +32,11 @@ class CouponDispenser:
         Args:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
+        self.coupon_cards = coupon_cards
+        self.customer_roster = []
+        self.issued_indices = []
         # TODO: Implement per instructions
-        pass
+    
 
     def __str__(self):
         """
