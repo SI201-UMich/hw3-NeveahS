@@ -46,8 +46,12 @@ class CouponDispenser:
         Returns:
             str
         """
+        if self.coupon_cards == []:
+            return ""
+        else:
+            return f"{CouponDispenser.join("|")}"
         # TODO: Implement per instructions
-        pass
+        
 
     def issue_coupon(self, name):
         """
