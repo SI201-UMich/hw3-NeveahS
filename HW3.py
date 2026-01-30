@@ -1,7 +1,7 @@
-# Name:
-# Student ID:
-# Email:
-# Who or what you worked with on this homework (including generative AI like ChatGPT):
+# Name: Neveah Stevenson
+# Student ID: 16185138
+# Email: neveahst@umich.edu
+# Who or what you worked with on this homework (including generative AI like ChatGPT): Office Hour IAs
 # If you worked with generative AI also add a statement for how you used it.
 # e.g.:
 # Asked ChatGPT hints for debugging and suggesting the general structure of the code
@@ -70,12 +70,18 @@ class CouponDispenser:
         self.name = name
 
         if self.coupon_cards == []:
-             print("The box is empty.")
-        elif self.name == self.customer_roster:
-            
-            print (f"That name already has a coupon: {self.issued_indices}")
+             return "The box is empty."
+        
+        if name in self.customer_roster:
+            index = self.customer_roster.index(name)
+            coupon_index = self.issued_indices[index]
+            coupon = self.coupons[coupon_index]
+            return (f"That name already has a coupon: {coupon}")
+        
+        
+
         # TODO: Implement per instructions
-        pass
+       
 
     def distribute_session(self):
         """
@@ -93,7 +99,36 @@ class CouponDispenser:
         Reminder: Use lists only (no dictionaries).
         """
         # TODO: Implement per instructions 
-        pass
+        round_number = 1
+        while True:
+            user_input = input(f"Round {round_number} - Enter a name (or a comma-separted list), or type 'show' or 'exit': ")
+            round_number += 1
+            if user_input == "exit":
+                print("Goodbye!")
+                break
+            elif user_input == "show":
+                for i in range(len(self.customer_roster)): 
+                 name = self.customer_roster[i]
+                 coupon_index = self.issued_indices[i]
+                 coupon = self.coupon_cards[coupon_index]
+                 print (f"{name}: {coupon}\n")
+            else:
+                pieces = user_input.split(",")
+
+                for text in pieces:
+                    stripped_text = text.strip()
+                    if stripped_text == "":
+                        continue
+
+                    coupon = self.issue_coupon(stripped_text)
+                    print(coupon)
+
+
+
+
+
+
+        
 
     def tally_distribution(self):
         """
@@ -133,7 +168,7 @@ def main():
     # box = CouponDispenser(coupon_cards)
     # box.distribute_session()
     # box.tally_distribution()
-    pass
+
 
 
 # -----------------------
