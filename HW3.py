@@ -1,12 +1,13 @@
 # Name: Neveah Stevenson
 # Student ID: 16185138
 # Email: neveahst@umich.edu
-# Who or what you worked with on this homework (including generative AI like ChatGPT): Office Hour IAs
+# Who or what you worked with on this homework (including generative AI like ChatGPT): Office Hour IAs and ChatGPT
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.:
+# e.g.: Asked ChatGPT to point out logic errors in my code and explain general structure from instructions
 # Asked ChatGPT hints for debugging and suggesting the general structure of the code
 # Did your use of GenAI on this assignment align with your goals and guidelines in 
-#    your Gen AI contract? If not, why?
+#    your Gen AI contract? If not, why? My use was in alignment with my contract. I decided that I would only use Gen AI 
+# after working the problems out on my own and going to office hours.
 
 import random
 import io
@@ -48,8 +49,8 @@ class CouponDispenser:
         """
         if self.coupon_cards == []:
             return ""
-        else:
-            return f"{CouponDispenser.join("|")}"
+        
+        return "|".join(self.coupon_cards)
         # TODO: Implement per instructions
         
 
@@ -67,7 +68,6 @@ class CouponDispenser:
         Returns:
             str: message as described above
         """
-        self.name = name
 
         if self.coupon_cards == []:
              return "The box is empty."
@@ -75,8 +75,16 @@ class CouponDispenser:
         if name in self.customer_roster:
             index = self.customer_roster.index(name)
             coupon_index = self.issued_indices[index]
-            coupon = self.coupons[coupon_index]
+            coupon = self.coupon_cards[coupon_index]
             return (f"That name already has a coupon: {coupon}")
+        
+        coupon_index = random.randrange(len(self.coupon_cards))
+
+        self.customer_roster.append(name)
+        self.issued_indices.append(coupon_index)
+
+        coupon = self.coupon_cards[coupon_index]
+        return f"{name}: {coupon}"
         
         
 
@@ -108,10 +116,10 @@ class CouponDispenser:
                 break
             elif user_input == "show":
                 for i in range(len(self.customer_roster)): 
-                 name = self.customer_roster[i]
-                 coupon_index = self.issued_indices[i]
-                 coupon = self.coupon_cards[coupon_index]
-                 print (f"{name}: {coupon}\n")
+                    name = self.customer_roster[i]
+                    coupon_index = self.issued_indices[i]
+                    coupon = self.coupon_cards[coupon_index]
+                    print (f"{name}: {coupon}\n")
             else:
                 pieces = user_input.split(",")
 
@@ -165,8 +173,8 @@ def main():
     ]
 
     # Uncomment the lines below as you implement each function.
-    # box = CouponDispenser(coupon_cards)
-    # box.distribute_session()
+    box = CouponDispenser(coupon_cards)
+    box.distribute_session()
     # box.tally_distribution()
 
 
