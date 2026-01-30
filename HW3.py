@@ -67,6 +67,13 @@ class CouponDispenser:
         Returns:
             str: message as described above
         """
+        self.name = name
+
+        if self.coupon_cards == []:
+             print("The box is empty.")
+        elif self.name == self.customer_roster:
+            
+            print (f"That name already has a coupon: {self.issued_indices}")
         # TODO: Implement per instructions
         pass
 
